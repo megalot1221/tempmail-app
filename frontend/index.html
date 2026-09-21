@@ -1,0 +1,1364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#09090b">
+    <title>TempMail</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+
+<div class="app-shell">
+
+    <!-- SIDEBAR -->
+    <aside
+        id="mainSidebar"
+        class="sidebar"
+    >
+
+        <button
+            id="sidebarCollapseBtn"
+            class="sidebar-collapse-btn"
+            type="button"
+            title="Collapse sidebar"
+            aria-label="Collapse sidebar"
+        >
+            ‹
+        </button>
+
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                ✉
+            </div>
+
+            <div class="brand-text">
+
+                <strong>
+                    TempMail
+                </strong>
+
+                <span>
+                    Private inbox
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <nav>
+
+            <button
+                class="nav-item active"
+                data-view="mailbox"
+                type="button"
+            >
+                <span>▣</span>
+                <span>Mailbox</span>
+            </button>
+
+
+            <button
+                class="nav-item"
+                data-view="account"
+                type="button"
+            >
+                <span>◉</span>
+                <span>Account</span>
+            </button>
+
+
+            <button
+                class="nav-item"
+                data-view="settings"
+                type="button"
+            >
+                <span>⚙</span>
+                <span>Settings</span>
+            </button>
+
+
+            <!-- ADMIN NAV -->
+
+            <div
+                id="adminNav"
+                class="admin-nav hidden"
+            >
+
+                <div class="nav-label">
+                    ADMIN
+                </div>
+
+
+                <button
+                    class="nav-item"
+                    data-view="admin"
+                    type="button"
+                >
+                    <span>▦</span>
+                    <span>Dashboard</span>
+                </button>
+
+
+                <button
+                    class="nav-item"
+                    data-view="adminUsers"
+                    type="button"
+                >
+                    <span>◉</span>
+                    <span>Users</span>
+                </button>
+
+
+                <button
+                    class="nav-item"
+                    data-view="adminDomains"
+                    type="button"
+                >
+                    <span>◎</span>
+                    <span>Domains</span>
+                </button>
+
+
+                <button
+                    class="nav-item"
+                    data-view="adminMailboxes"
+                    type="button"
+                >
+                    <span>✉</span>
+                    <span>Mailboxes</span>
+                </button>
+
+            </div>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <div class="status-dot"></div>
+
+            <div class="service-status-text">
+
+                <small>
+                    Service status
+                </small>
+
+                <strong>
+                    Operational
+                </strong>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN -->
+    <main class="main">
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+
+            <button id="mobileMenuBtn" class="mobile-menu-btn" type="button">
+                ☰
+            </button>
+
+            <div class="mobile-brand">
+                <div class="mobile-brand-icon">✉</div>
+                <strong>TempMail</strong>
+            </div>
+
+            <div class="topbar-title">
+
+                <p class="eyebrow">
+                    TEMPORARY EMAIL
+                </p>
+
+                <h1 id="pageTitle">
+                    Your private inbox
+                </h1>
+
+            </div>
+
+            <div class="top-actions">
+
+                <button
+                    id="newMailboxBtn"
+                    class="button secondary"
+                >
+                    <span>＋</span>
+                    New email
+                </button>
+
+                <button
+                    id="loginBtn"
+                    class="button primary"
+                >
+                    Login
+                </button>
+
+                <button
+                    id="logoutBtn"
+                    class="button secondary hidden"
+                >
+                    Logout
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <!-- ========================================= -->
+        <!-- MAILBOX -->
+        <!-- ========================================= -->
+
+        <section
+            id="mailboxView"
+            class="view"
+        >
+
+            <div class="mailbox-hero glass">
+
+                <div class="hero-copy">
+
+                    <span class="badge">
+                        ● LIVE MAILBOX
+                    </span>
+
+                    <h2>
+                        Your temporary email address
+                    </h2>
+
+                    <p>
+                        Use this address for signups,
+                        verification codes and other
+                        messages you don't want in your
+                        personal inbox.
+                    </p>
+
+                </div>
+
+
+                <div class="email-box">
+
+                    <div class="email-value">
+                        <span id="emailAddress">
+                            Creating mailbox...
+                        </span>
+                    </div>
+
+                    <button
+                        id="copyBtn"
+                        class="copy-button"
+                        disabled
+                    >
+                        Copy
+                    </button>
+
+                </div>
+
+
+                <div class="mailbox-meta">
+
+                    <div>
+                        <span>Expires in</span>
+                        <strong id="countdown">
+                            20:00
+                        </strong>
+                    </div>
+
+                    <div>
+                        <span>Domain</span>
+                        <strong id="domainName">
+                            —
+                        </strong>
+                    </div>
+
+                    <div>
+                        <span>Region</span>
+                        <strong id="countryName">
+                            —
+                        </strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="controls-row">
+
+                <div class="select-group">
+
+                    <label for="domainSelect">
+                        Email domain
+                    </label>
+
+                    <select id="domainSelect">
+                        <option value="">
+                            Loading domains...
+                        </option>
+                    </select>
+
+                </div>
+
+                <button
+                    id="refreshBtn"
+                    class="button secondary refresh-btn"
+                >
+                    ↻ Refresh inbox
+                </button>
+
+            </div>
+
+
+            <div class="section-heading">
+
+                <div>
+
+                    <h2>
+                        Inbox
+                    </h2>
+
+                    <p id="inboxStatus">
+                        Waiting for messages
+                    </p>
+
+                </div>
+
+                <span
+                    id="messageCount"
+                    class="count-pill"
+                >
+                    0
+                </span>
+
+            </div>
+
+
+            <div
+                id="inbox"
+                class="inbox glass"
+            >
+
+                <div class="empty-state">
+
+                    <div class="empty-icon">
+                        ✉
+                    </div>
+
+                    <h3>
+                        Your inbox is empty
+                    </h3>
+
+                    <p>
+                        Messages sent to your
+                        temporary address will
+                        appear here automatically.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+<!-- ========================================= -->
+<!-- ACCOUNT -->
+<!-- ========================================= -->
+
+<section
+    id="accountView"
+    class="view hidden"
+>
+
+    <div class="page-card glass">
+
+        <span class="badge">
+            ACCOUNT
+        </span>
+
+
+        <h2 id="accountTitle">
+            Create an account
+        </h2>
+
+
+        <p id="accountDescription">
+            Register to keep your mailboxes
+            without the 20-minute guest
+            expiration.
+        </p>
+
+
+        <!-- REGISTER -->
+
+        <div
+            id="registerForm"
+            class="auth-grid"
+        >
+
+            <div>
+
+                <label>
+                    Username
+                </label>
+
+                <input
+                    id="registerUsername"
+                    type="text"
+                    placeholder="Username"
+                    autocomplete="username"
+                >
+
+            </div>
+
+
+            <div>
+
+                <label>
+                    Email
+                </label>
+
+                <input
+                    id="registerEmail"
+                    type="email"
+                    placeholder="you@example.com"
+                    autocomplete="email"
+                >
+
+            </div>
+
+
+            <div>
+
+                <label>
+                    Password
+                </label>
+
+                <input
+                    id="registerPassword"
+                    type="password"
+                    placeholder="Password"
+                    autocomplete="new-password"
+                >
+
+            </div>
+
+
+            <button
+                id="registerBtn"
+                class="button primary full"
+                type="button"
+            >
+                Create account
+            </button>
+
+
+            <div
+                id="registerMessage"
+                class="form-message"
+            ></div>
+
+        </div>
+
+
+        <!-- LOGGED-IN ACCOUNT -->
+
+        <div
+            id="accountInfo"
+            class="hidden"
+        >
+
+            <div class="stats-grid">
+
+                <div class="stat-card glass">
+
+                    <span>
+                        Username
+                    </span>
+
+                    <strong id="accountUsername">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div class="stat-card glass">
+
+                    <span>
+                        Email
+                    </span>
+
+                    <strong id="accountEmail">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div class="stat-card glass">
+
+                    <span>
+                        Country
+                    </span>
+
+                    <strong id="accountCountry">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div class="stat-card glass">
+
+                    <span>
+                        Role
+                    </span>
+
+                    <strong id="accountRole">
+                        —
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="settings-account">
+
+                <!-- USERNAME -->
+
+                <div class="setting-field">
+
+                    <label>
+                        Username
+                    </label>
+
+                    <div class="account-value">
+                        <span id="settingsUsername">
+                            —
+                        </span>
+                    </div>
+
+                    <button
+                        id="changeNameBtn"
+                        class="button secondary"
+                        type="button"
+                    >
+                        Change name
+                    </button>
+
+                </div>
+
+
+                <!-- EMAIL -->
+
+                <div class="setting-field">
+
+                    <label>
+                        Email
+                    </label>
+
+                    <div class="account-value">
+                        <span id="settingsEmail">
+                            —
+                        </span>
+                    </div>
+
+                    <button
+                        id="changeEmailBtn"
+                        class="button secondary"
+                        type="button"
+                    >
+                        Change email
+                    </button>
+
+                </div>
+
+
+                <!-- PASSWORD -->
+
+                <div class="setting-field">
+
+                    <label>
+                        Password
+                    </label>
+
+                    <div class="account-value">
+                        <span>
+                            ••••••••••••
+                        </span>
+                    </div>
+
+                    <button
+                        id="changePasswordBtn"
+                        class="button secondary"
+                        type="button"
+                    >
+                        Change password
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="accountSettingsMessage"
+                class="form-message"
+            ></div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+        <!-- ========================================= -->
+        <!-- MY EMAILS -->
+        <!-- ========================================= -->
+
+        <section
+            id="myEmailsView"
+            class="view hidden"
+        >
+
+            <div class="page-card glass">
+
+                <span class="badge">
+                    MY EMAILS
+                </span>
+
+                <h2>
+                    Your mailboxes
+                </h2>
+
+                <p>
+                    Your permanent email addresses.
+                </p>
+
+                <div
+                    id="myEmailsList"
+                    class="admin-list"
+                >
+                    Loading...
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ========================================= -->
+        <!-- ADMIN DASHBOARD -->
+        <!-- ========================================= -->
+
+        <section id="adminView" class="view hidden admin-dashboard">
+
+  <!-- ADMIN TOPBAR -->
+  <div class="admin-topbar">
+    <div class="admin-topbar-left">
+      <button id="adminSidebarToggle" class="icon-btn" type="button" aria-label="Toggle sidebar">
+        ☰
+      </button>
+
+      <div class="admin-search">
+        <span>⌕</span>
+        <input id="adminSearchInput" type="search" placeholder="Search..." autocomplete="off">
+      </div>
+    </div>
+
+    <div class="admin-topbar-right">
+      <button class="icon-btn" type="button" title="Notifications">
+        ♢
+      </button>
+
+      <div class="admin-profile">
+        <div class="admin-avatar" id="adminAvatar">A</div>
+        <div class="admin-profile-info">
+          <strong id="adminProfileName">Admin</strong>
+          <small>Administrator</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- DASHBOARD HEADER -->
+  <div class="admin-page-header">
+    <div>
+      <span class="admin-eyebrow">ADMINISTRATION</span>
+      <h1>Dashboard</h1>
+      <p>Monitor your TempMail service in real-time.</p>
+    </div>
+
+    <button id="adminRefreshBtn" class="admin-refresh-btn" type="button">
+      ↻ <span>Refresh</span>
+    </button>
+  </div>
+
+
+  <!-- KPI CARDS -->
+  <div class="admin-kpi-grid">
+
+    <article class="admin-kpi-card">
+      <div class="kpi-icon orange">◎</div>
+
+      <div class="kpi-content">
+        <span>Registered Users</span>
+        <strong id="adminRegisteredUsers">0</strong>
+
+        <small class="kpi-positive">
+          ↗ Active accounts
+        </small>
+      </div>
+    </article>
+
+
+    <article class="admin-kpi-card">
+      <div class="kpi-icon purple">♙</div>
+
+      <div class="kpi-content">
+        <span>Active Mailboxes</span>
+        <strong id="adminActiveMailboxes">0</strong>
+
+        <small class="kpi-positive">
+          ↗ Currently active
+        </small>
+      </div>
+    </article>
+
+
+    <article class="admin-kpi-card">
+      <div class="kpi-icon pink">✉</div>
+
+      <div class="kpi-content">
+        <span>Emails Generated</span>
+        <strong id="adminEmailsGenerated">0</strong>
+
+        <small class="kpi-positive">
+          ↗ Last 30 days
+        </small>
+      </div>
+    </article>
+
+
+    <article class="admin-kpi-card">
+      <div class="kpi-icon green">◉</div>
+
+      <div class="kpi-content">
+        <span>Emails Received</span>
+        <strong id="adminEmailsReceived">0</strong>
+
+        <small class="kpi-positive">
+          ↗ Last 30 days
+        </small>
+      </div>
+    </article>
+
+  </div>
+
+
+  <!-- MAIN ANALYTICS GRID -->
+  <div class="admin-main-grid">
+
+    <!-- ANALYTICS -->
+    <section class="admin-panel analytics-panel">
+
+      <div class="panel-header">
+        <div>
+          <h2>System Analytics</h2>
+          <p>Daily activity across the TempMail platform.</p>
+        </div>
+
+        <div class="analytics-legend">
+          <span>
+            <i class="legend-dot orange"></i>
+            Generated
+          </span>
+
+          <span>
+            <i class="legend-dot pink"></i>
+            Received
+          </span>
+        </div>
+      </div>
+
+      <div class="chart-wrapper">
+        <canvas id="adminAnalyticsChart"></canvas>
+      </div>
+
+    </section>
+
+
+    <!-- SYSTEM STATUS / ALERTS -->
+    <section class="admin-panel alerts-panel">
+
+      <div class="panel-header">
+        <div>
+          <h2>System Status</h2>
+          <p>Current service overview.</p>
+        </div>
+
+        <span class="status-online">
+          <i></i> Online
+        </span>
+      </div>
+
+
+      <div class="admin-alert-list">
+
+        <div class="admin-alert">
+          <div class="alert-symbol green">✓</div>
+
+          <div>
+            <strong>Mail API</strong>
+            <p>API service is operational.</p>
+          </div>
+
+          <span class="alert-status success">OK</span>
+        </div>
+
+
+        <div class="admin-alert">
+          <div class="alert-symbol orange">◎</div>
+
+          <div>
+            <strong>Domains</strong>
+            <p>
+              <span id="adminVerifiedDomains">0</span>
+              verified domains.
+            </p>
+          </div>
+
+          <span class="alert-status success">OK</span>
+        </div>
+
+
+        <div class="admin-alert">
+          <div class="alert-symbol purple">♢</div>
+
+          <div>
+            <strong>Mailboxes</strong>
+            <p>
+              <span id="adminTotalMailboxes">0</span>
+              total mailboxes.
+            </p>
+          </div>
+
+          <span class="alert-status success">OK</span>
+        </div>
+
+
+        <div class="admin-alert">
+          <div class="alert-symbol pink">!</div>
+
+          <div>
+            <strong>Pending Domains</strong>
+            <p>
+              <span id="adminPendingDomains">0</span>
+              domains waiting for verification.
+            </p>
+          </div>
+
+          <span id="adminPendingStatus" class="alert-status warning">
+            CHECK
+          </span>
+        </div>
+
+      </div>
+
+    </section>
+
+  </div>
+
+
+  <!-- BOTTOM GRID -->
+  <div class="admin-bottom-grid">
+
+    <!-- RECENT ACTIVITY -->
+    <section class="admin-panel activity-panel">
+
+      <div class="panel-header">
+        <div>
+          <h2>Recent Activity</h2>
+          <p>Latest events from users and guests.</p>
+        </div>
+
+        <button
+          class="panel-link"
+          data-admin-view="activity"
+          type="button"
+        >
+          View all →
+        </button>
+      </div>
+
+      <div class="activity-table-wrap">
+
+        <table class="admin-table">
+
+          <thead>
+            <tr>
+              <th>Event</th>
+              <th>Country</th>
+              <th>Date</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+
+          <tbody id="adminRecentActivity">
+            <tr>
+              <td colspan="4" class="table-loading">
+                Loading activity...
+              </td>
+            </tr>
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </section>
+
+
+    <!-- QUICK ACTIONS -->
+    <section class="admin-panel quick-panel">
+
+      <div class="panel-header">
+        <div>
+          <h2>Quick Actions</h2>
+          <p>Manage your service.</p>
+        </div>
+      </div>
+
+
+      <div class="quick-actions">
+
+        <button
+          type="button"
+          class="quick-action"
+          data-admin-action="users"
+        >
+          <span class="quick-action-icon purple">♙</span>
+
+          <span>
+            <strong>Manage Users</strong>
+            <small>View registered accounts</small>
+          </span>
+
+          <b>→</b>
+        </button>
+
+
+        <button
+          type="button"
+          class="quick-action"
+          data-admin-action="domains"
+        >
+          <span class="quick-action-icon orange">◎</span>
+
+          <span>
+            <strong>Manage Domains</strong>
+            <small>Verify and configure domains</small>
+          </span>
+
+          <b>→</b>
+        </button>
+
+
+        <button
+          type="button"
+          class="quick-action"
+          data-admin-action="mailboxes"
+        >
+          <span class="quick-action-icon pink">✉</span>
+
+          <span>
+            <strong>Manage Mailboxes</strong>
+            <small>View generated mailboxes</small>
+          </span>
+
+          <b>→</b>
+        </button>
+
+      </div>
+
+    </section>
+
+  </div>
+
+</section>
+
+
+        <!-- ========================================= -->
+        <!-- ADMIN USERS -->
+        <!-- ========================================= -->
+
+        <section
+            id="adminUsersView"
+            class="view hidden"
+        >
+
+            <div class="page-card glass">
+
+                <span class="badge">
+                    ADMIN
+                </span>
+
+                <h2>
+                    Users
+                </h2>
+
+                <p>
+                    Registered accounts and their
+                    activity metadata.
+                </p>
+
+                <div
+                    id="adminUsersList"
+                    class="admin-list"
+                >
+                    Loading...
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ========================================= -->
+        <!-- ADMIN DOMAINS -->
+        <!-- ========================================= -->
+
+        <section
+            id="adminDomainsView"
+            class="view hidden"
+        >
+
+            <div class="page-card glass">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <span class="badge">
+                            ADMIN
+                        </span>
+
+                        <h2>
+                            Domains
+                        </h2>
+
+                        <p>
+                            Add and verify domains
+                            for mailbox generation.
+                        </p>
+
+                    </div>
+
+                    <button
+                        id="addDomainBtn"
+                        class="button primary"
+                    >
+                        ＋ Add domain
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="adminDomainsList"
+                    class="admin-list"
+                >
+                    Loading...
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ========================================= -->
+        <!-- ADMIN MAILBOXES -->
+        <!-- ========================================= -->
+
+        <section
+            id="adminMailboxesView"
+            class="view hidden"
+        >
+
+            <div class="page-card glass">
+
+                <span class="badge">
+                    ADMIN
+                </span>
+
+                <h2>
+                    Mailboxes
+                </h2>
+
+                <p>
+                    Manage mailbox metadata.
+                    Message bodies are never shown.
+                </p>
+
+                <div
+                    id="adminMailboxesList"
+                    class="admin-list"
+                >
+                    Loading...
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- MOBILE MENU -->
+
+<div id="mobileMenu" class="mobile-menu hidden">
+
+    <div class="mobile-menu-backdrop"></div>
+
+    <div class="mobile-menu-card glass">
+
+        <button class="nav-item mobile-nav-item active" data-view="mailbox">
+            <span>▣</span>
+            <span>Inbox</span>
+        </button>
+
+        <button class="nav-item mobile-nav-item" data-view="myEmails">
+            <span>✉</span>
+            <span>My Emails</span>
+        </button>
+
+        <button class="nav-item mobile-nav-item" id="apiDocsBtn">
+            <span>⌘</span>
+            <span>API Docs</span>
+        </button>
+
+        <button class="nav-item mobile-nav-item" data-view="account">
+            <span>⚙</span>
+            <span>Account Settings</span>
+        </button>
+
+        <div id="mobileAdminNav" class="hidden">
+
+            <div class="nav-label">
+                ADMIN
+            </div>
+
+            <button class="nav-item mobile-nav-item" data-view="admin">
+                <span>▦</span>
+                <span>Dashboard</span>
+            </button>
+
+            <button class="nav-item mobile-nav-item" data-view="adminUsers">
+                <span>◉</span>
+                <span>Users</span>
+            </button>
+
+            <button class="nav-item mobile-nav-item" data-view="adminDomains">
+                <span>◎</span>
+                <span>Domains</span>
+            </button>
+
+            <button class="nav-item mobile-nav-item" data-view="adminMailboxes">
+                <span>✉</span>
+                <span>Mailboxes</span>
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- TOAST -->
+
+<div
+    id="toast"
+    class="toast"
+></div>
+
+
+<!-- LOGIN -->
+
+<div
+    id="loginModal"
+    class="modal hidden"
+>
+
+    <div class="modal-backdrop"></div>
+
+    <div class="modal-card glass">
+
+        <button
+            id="closeLogin"
+            class="modal-close"
+        >
+            ×
+        </button>
+
+        <span class="badge">
+            ACCOUNT LOGIN
+        </span>
+
+        <h2>
+            Welcome back
+        </h2>
+
+        <p>
+            Login to access your permanent
+            mailboxes.
+        </p>
+
+
+        <label>
+            Email
+        </label>
+
+        <input
+            id="loginEmail"
+            type="email"
+            placeholder="you@example.com"
+        >
+
+
+        <label>
+            Password
+        </label>
+
+        <input
+            id="loginPassword"
+            type="password"
+            placeholder="Password"
+        >
+
+
+        <button
+            id="submitLogin"
+            class="button primary full"
+            type="button"
+        >
+            Login
+        </button>
+
+
+        <div
+            id="loginMessage"
+            class="form-message"
+        ></div>
+
+    </div>
+
+</div>
+
+
+<!-- ADD DOMAIN MODAL -->
+
+<div
+    id="domainModal"
+    class="modal hidden"
+>
+
+    <div class="modal-backdrop"></div>
+
+    <div class="modal-card glass">
+
+        <button
+            id="closeDomainModal"
+            class="modal-close"
+        >
+            ×
+        </button>
+
+        <span class="badge">
+            ADMIN DOMAIN
+        </span>
+
+        <h2>
+            Add domain
+        </h2>
+
+        <p>
+            Add a domain and configure the DNS
+            records shown after submission.
+        </p>
+
+
+        <label>
+            Domain
+        </label>
+
+        <input
+            id="newDomainInput"
+            type="text"
+            placeholder="example.com"
+        >
+
+
+        <button
+            id="submitDomain"
+            class="button primary full"
+            type="button"
+        >
+            Add domain
+        </button>
+
+
+        <div
+            id="domainMessage"
+            class="form-message"
+        ></div>
+
+
+        <div
+            id="dnsConfig"
+            class="dns-config hidden"
+        >
+
+            <h3>
+                DNS configuration
+            </h3>
+
+            <div id="dnsRecords"></div>
+
+            <button
+                id="verifyDomainBtn"
+                class="button secondary full"
+                type="button"
+            >
+                Verify domain
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="/app.js"></script>
+
+
+</body>
+</html>

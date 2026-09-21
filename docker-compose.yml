@@ -1,0 +1,16 @@
+services:
+  app:
+    build: .
+    container_name: tempmail_app
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - "127.0.0.1:8080:8080"
+    networks:
+      - tempmail_network
+
+networks:
+  tempmail_network:
+    external: true
+    name: tempmail-server_tempmail_network

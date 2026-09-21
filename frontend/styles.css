@@ -1,0 +1,4360 @@
+:root {
+    --bg: #07070a;
+    --panel: rgba(20, 20, 27, .72);
+    --panel-strong: rgba(27, 27, 36, .88);
+    --border: rgba(255, 255, 255, .09);
+    --text: #f7f7fa;
+    --muted: #9999a8;
+    --muted-2: #686875;
+    --orange: #ff7a18;
+    --pink: #ff3d9a;
+    --purple: #8b5cf6;
+    --green: #35d49a;
+    --danger: #ff5470;
+    --radius: 22px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    min-height: 100%;
+    background:
+        radial-gradient(circle at 85% 10%, rgba(139, 92, 246, .13), transparent 30%),
+        radial-gradient(circle at 20% 80%, rgba(255, 61, 154, .08), transparent 30%),
+        var(--bg);
+    color: var(--text);
+    font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+}
+
+body {
+    min-height: 100vh;
+}
+
+button,
+input,
+select {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+.app-shell {
+    min-height: 100vh;
+    display: flex;
+}
+
+.sidebar {
+    width: 245px;
+    min-height: 100vh;
+    padding: 28px 18px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    border-right: 1px solid var(--border);
+    background: rgba(8, 8, 11, .78);
+    backdrop-filter: blur(25px);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 10px 30px;
+}
+
+.brand-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 13px;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    background: linear-gradient(135deg, var(--orange), var(--pink), var(--purple));
+    box-shadow: 0 10px 35px rgba(255, 61, 154, .22);
+}
+
+.brand strong,
+.brand span {
+    display: block;
+}
+
+.brand strong {
+    font-size: 16px;
+}
+
+.brand span {
+    color: var(--muted);
+    font-size: 11px;
+    margin-top: 3px;
+}
+
+nav {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.nav-item {
+    border: 0;
+    background: transparent;
+    color: var(--muted);
+    border-radius: 13px;
+    padding: 12px 13px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-align: left;
+    transition: .2s ease;
+}
+
+.nav-item:hover,
+.nav-item.active {
+    color: white;
+    background: rgba(255, 255, 255, .07);
+}
+
+.nav-item.active {
+    box-shadow: inset 2px 0 0 var(--pink);
+}
+
+.sidebar-bottom {
+    margin-top: auto;
+    padding: 14px;
+    border: 1px solid var(--border);
+    background: rgba(255, 255, 255, .035);
+    border-radius: 16px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.sidebar-bottom small,
+.sidebar-bottom strong {
+    display: block;
+}
+
+.sidebar-bottom small {
+    color: var(--muted-2);
+    font-size: 10px;
+}
+
+.sidebar-bottom strong {
+    font-size: 12px;
+    margin-top: 3px;
+}
+
+.status-dot {
+    width: 9px;
+    height: 9px;
+    background: var(--green);
+    border-radius: 50%;
+    box-shadow: 0 0 15px rgba(53, 212, 154, .7);
+}
+
+.main {
+    width: calc(100% - 245px);
+    margin-left: 245px;
+    padding: 35px;
+    max-width: 1600px;
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 28px;
+}
+
+.eyebrow {
+    color: var(--pink);
+    font-size: 10px;
+    letter-spacing: .2em;
+    font-weight: 700;
+    margin: 0 0 8px;
+}
+
+h1,
+h2,
+h3,
+p {
+    margin-top: 0;
+}
+
+h1 {
+    margin-bottom: 0;
+    font-size: clamp(25px, 3vw, 34px);
+    letter-spacing: -.04em;
+}
+
+h2 {
+    font-size: 23px;
+    letter-spacing: -.025em;
+    margin-bottom: 8px;
+}
+
+h3 {
+    margin-bottom: 7px;
+}
+
+p {
+    color: var(--muted);
+    line-height: 1.6;
+}
+
+.top-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.button {
+    border: 1px solid var(--border);
+    color: white;
+    border-radius: 13px;
+    padding: 11px 17px;
+    font-weight: 600;
+    transition: .2s ease;
+    background: rgba(255, 255, 255, .05);
+}
+
+.button:hover {
+    transform: translateY(-1px);
+    border-color: rgba(255, 255, 255, .18);
+}
+
+.button.primary {
+    border: 0;
+    background: linear-gradient(100deg, var(--orange), var(--pink));
+    box-shadow: 0 10px 30px rgba(255, 61, 154, .17);
+}
+
+.button.secondary {
+    background: rgba(255, 255, 255, .055);
+}
+
+.button.full {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.glass {
+    border: 1px solid var(--border);
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, .065),
+        rgba(255, 255, 255, .025)
+    );
+    box-shadow:
+        0 25px 80px rgba(0, 0, 0, .22),
+        inset 0 1px 0 rgba(255, 255, 255, .025);
+    backdrop-filter: blur(24px);
+}
+
+.mailbox-hero {
+    padding: 30px;
+    border-radius: var(--radius);
+    overflow: hidden;
+    position: relative;
+}
+
+.mailbox-hero::after {
+    content: "";
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    right: -130px;
+    top: -150px;
+    border-radius: 50%;
+    background: rgba(139, 92, 246, .13);
+    filter: blur(30px);
+    pointer-events: none;
+}
+
+.hero-copy {
+    max-width: 650px;
+}
+
+.hero-copy p {
+    max-width: 620px;
+    margin-bottom: 24px;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #ff9bc9;
+    font-size: 10px;
+    letter-spacing: .15em;
+    font-weight: 800;
+    margin-bottom: 12px;
+}
+
+.email-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 7px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, .1);
+    background: rgba(0, 0, 0, .25);
+    max-width: 760px;
+}
+
+.email-value {
+    flex: 1;
+    min-width: 0;
+    padding: 10px 13px;
+    overflow: hidden;
+}
+
+.email-value span {
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 15px;
+}
+
+.copy-button {
+    border: 0;
+    border-radius: 11px;
+    background: white;
+    color: #101014;
+    font-weight: 700;
+    padding: 10px 17px;
+}
+
+.copy-button:disabled {
+    opacity: .4;
+    cursor: not-allowed;
+}
+
+.mailbox-meta {
+    display: flex;
+    gap: 10px;
+    margin-top: 17px;
+    flex-wrap: wrap;
+}
+
+.mailbox-meta > div {
+    min-width: 145px;
+    padding: 12px 14px;
+    border-radius: 13px;
+    background: rgba(0, 0, 0, .18);
+    border: 1px solid rgba(255, 255, 255, .06);
+}
+
+.mailbox-meta span,
+.mailbox-meta strong {
+    display: block;
+}
+
+.mailbox-meta span {
+    color: var(--muted-2);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+}
+
+.mailbox-meta strong {
+    margin-top: 4px;
+    font-size: 13px;
+}
+
+#countdown {
+    color: #ff9b61;
+}
+
+.controls-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    gap: 12px;
+    margin: 20px 0 28px;
+}
+
+.select-group label,
+.modal-card label,
+.auth-grid label {
+    display: block;
+    color: var(--muted);
+    font-size: 11px;
+    margin: 0 0 7px;
+}
+
+select,
+input {
+    width: 100%;
+    border: 1px solid var(--border);
+    outline: none;
+    color: white;
+    background: rgba(255, 255, 255, .045);
+    border-radius: 12px;
+    padding: 12px 13px;
+}
+
+select:focus,
+input:focus {
+    border-color: rgba(255, 61, 154, .55);
+    box-shadow: 0 0 0 3px rgba(255, 61, 154, .08);
+}
+
+select option {
+    background: #18181f;
+    color: white;
+}
+
+.refresh-btn {
+    align-self: end;
+    white-space: nowrap;
+}
+
+.section-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.section-heading h2 {
+    margin-bottom: 3px;
+}
+
+.section-heading p {
+    font-size: 12px;
+    margin: 0;
+}
+
+.count-pill {
+    min-width: 32px;
+    height: 28px;
+    padding: 0 9px;
+    display: grid;
+    place-items: center;
+    border-radius: 20px;
+    color: #ff9bc9;
+    background: rgba(255, 61, 154, .1);
+    border: 1px solid rgba(255, 61, 154, .17);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.inbox {
+    min-height: 300px;
+    border-radius: var(--radius);
+    overflow: hidden;
+}
+
+.empty-state {
+    min-height: 300px;
+    display: grid;
+    place-content: center;
+    text-align: center;
+    padding: 30px;
+}
+
+.empty-state p {
+    max-width: 440px;
+    font-size: 13px;
+}
+
+.empty-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 16px;
+    display: grid;
+    place-items: center;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, .055);
+    color: #aaaab8;
+    font-size: 25px;
+}
+
+.email-row {
+    padding: 18px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, .06);
+    cursor: pointer;
+    transition: background .2s ease;
+}
+
+.email-row:hover {
+    background: rgba(255, 255, 255, .035);
+}
+
+.email-row:last-child {
+    border-bottom: 0;
+}
+
+.email-row-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.email-from {
+    font-weight: 650;
+}
+
+.email-time {
+    color: var(--muted-2);
+    font-size: 11px;
+}
+
+.email-subject {
+    color: #dddde5;
+    margin-top: 6px;
+    font-size: 13px;
+}
+
+.email-preview {
+    color: var(--muted);
+    margin-top: 5px;
+    font-size: 12px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.page-card {
+    padding: 30px;
+    border-radius: var(--radius);
+    max-width: 800px;
+}
+
+.auth-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin: 25px 0 20px;
+}
+
+.form-message {
+    min-height: 22px;
+    margin-top: 12px;
+    color: #ff9bc9;
+    font-size: 12px;
+}
+
+.setting-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 17px;
+    margin-top: 25px;
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    background: rgba(255, 255, 255, .03);
+}
+
+.setting-row strong,
+.setting-row span {
+    display: block;
+}
+
+.setting-row span {
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+.switch input {
+    display: none;
+}
+
+.switch span {
+    width: 45px;
+    height: 25px;
+    border-radius: 20px;
+    display: block;
+    position: relative;
+    background: #30303a;
+    cursor: pointer;
+}
+
+.switch span::after {
+    content: "";
+    position: absolute;
+    width: 19px;
+    height: 19px;
+    top: 3px;
+    left: 3px;
+    background: white;
+    border-radius: 50%;
+    transition: .2s;
+}
+
+.switch input:checked + span {
+    background: linear-gradient(90deg, var(--orange), var(--pink));
+}
+
+.switch input:checked + span::after {
+    left: 23px;
+}
+
+.modal {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: grid;
+    place-items: center;
+    padding: 20px;
+}
+
+.modal.hidden,
+.hidden {
+    display: none !important;
+}
+
+.modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, .7);
+    backdrop-filter: blur(8px);
+}
+
+.modal-card {
+    width: min(430px, 100%);
+    padding: 30px;
+    border-radius: 22px;
+    position: relative;
+    z-index: 1;
+}
+
+.modal-card h2 {
+    margin-bottom: 5px;
+}
+
+.modal-card label {
+    margin-top: 15px;
+}
+
+.modal-close {
+    position: absolute;
+    right: 17px;
+    top: 15px;
+    border: 0;
+    background: transparent;
+    color: var(--muted);
+    font-size: 25px;
+}
+
+.toast {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 200;
+    background: #18181f;
+    border: 1px solid var(--border);
+    padding: 12px 17px;
+    border-radius: 12px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, .35);
+    transform: translateY(20px);
+    opacity: 0;
+    pointer-events: none;
+    transition: .25s;
+    font-size: 12px;
+}
+
+.toast.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+@media (max-width: 850px) {
+    .sidebar {
+        width: 72px;
+        padding: 20px 10px;
+    }
+
+    .brand {
+        justify-content: center;
+        padding: 0 0 25px;
+    }
+
+    .brand > div:last-child,
+    .nav-item span:last-child,
+    .sidebar-bottom > div:last-child {
+        display: none;
+    }
+
+    .nav-item {
+        justify-content: center;
+        padding: 13px;
+    }
+
+    .sidebar-bottom {
+        justify-content: center;
+        padding: 12px 0;
+    }
+
+    .main {
+        width: calc(100% - 72px);
+        margin-left: 72px;
+        padding: 25px 18px;
+    }
+
+    .controls-row {
+        grid-template-columns: 1fr;
+    }
+
+    .refresh-btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .main {
+        padding: 20px 13px;
+    }
+
+    .topbar {
+        flex-direction: column;
+    }
+
+    .top-actions {
+        width: 100%;
+    }
+
+    .top-actions .button {
+        flex: 1;
+    }
+
+    .mailbox-hero,
+    .page-card {
+        padding: 20px;
+    }
+
+    .email-box {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .copy-button {
+        width: 100%;
+    }
+
+    .mailbox-meta {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .mailbox-meta > div {
+        min-width: 0;
+    }
+
+    .auth-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* =========================================================
+   MOBILE KENGKOY-STYLE LAYOUT
+   Keeps the existing TempMail dark glass design
+   ========================================================= */
+
+.mobile-menu-btn,
+.mobile-brand {
+    display: none;
+}
+
+.mobile-menu {
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+}
+
+.mobile-menu-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,.55);
+    backdrop-filter: blur(8px);
+}
+
+.mobile-menu-card {
+    position: absolute;
+    top: 76px;
+    left: 18px;
+    right: 18px;
+    padding: 14px;
+    border-radius: 24px;
+    animation: mobileMenuIn .18s ease;
+}
+
+.mobile-nav-item {
+    width: 100%;
+    justify-content: flex-start;
+    border: 0;
+    background: transparent;
+    margin-bottom: 4px;
+    border-radius: 16px;
+}
+
+.mobile-nav-item:hover {
+    background: rgba(255,255,255,.06);
+}
+
+@keyframes mobileMenuIn {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* logged-in state */
+
+#logoutBtn {
+    border-color: rgba(255,255,255,.12);
+}
+
+#logoutBtn:hover {
+    border-color: rgba(255,75,150,.5);
+}
+
+
+/* compact account information */
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.stat-card {
+    padding: 22px;
+    border-radius: 22px;
+}
+
+.stat-card span {
+    display: block;
+    color: rgba(255,255,255,.52);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    margin-bottom: 8px;
+}
+
+.stat-card strong {
+    font-size: 20px;
+}
+
+
+/* admin lists */
+
+.admin-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.admin-list-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 15px 17px;
+    border-radius: 16px;
+    background: rgba(255,255,255,.035);
+    border: 1px solid rgba(255,255,255,.06);
+}
+
+
+/* mobile */
+
+@media (max-width: 760px) {
+
+    body {
+        overflow-x: hidden;
+    }
+
+    .app-shell {
+        display: block;
+        min-height: 100vh;
+    }
+
+    .sidebar {
+        display: none !important;
+    }
+
+    .main {
+        width: 100%;
+        padding: 0 15px 35px;
+    }
+
+    .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        min-height: 72px;
+        margin: 0 -15px 18px;
+        padding: 10px 15px;
+        display: grid;
+        grid-template-columns: 42px 1fr auto;
+        align-items: center;
+        gap: 10px;
+        background: rgba(9,9,11,.88);
+        backdrop-filter: blur(18px);
+        border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+
+    .mobile-menu-btn {
+        display: flex;
+        width: 40px;
+        height: 40px;
+        align-items: center;
+        justify-content: center;
+        border: 0;
+        border-radius: 12px;
+        color: white;
+        background: rgba(255,255,255,.06);
+        font-size: 23px;
+        cursor: pointer;
+    }
+
+    .mobile-brand {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        min-width: 0;
+    }
+
+    .mobile-brand-icon {
+        width: 38px;
+        height: 38px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 12px;
+        background: linear-gradient(135deg,#704cff,#ff2c91);
+        font-size: 19px;
+    }
+
+    .mobile-brand strong {
+        font-size: 17px;
+        white-space: nowrap;
+    }
+
+    .topbar-title {
+        display: none;
+    }
+
+    .top-actions {
+        margin: 0;
+    }
+
+    #newMailboxBtn {
+        display: none;
+    }
+
+    #loginBtn,
+    #logoutBtn {
+        min-height: 42px;
+        padding: 0 18px;
+        border-radius: 13px;
+        font-size: 14px;
+    }
+
+    .mailbox-hero {
+        padding: 24px 20px;
+        border-radius: 28px;
+    }
+
+    .hero-copy h2 {
+        font-size: 30px;
+        line-height: 1.1;
+        margin-top: 15px;
+    }
+
+    .hero-copy p {
+        font-size: 16px;
+        line-height: 1.75;
+        color: rgba(255,255,255,.58);
+    }
+
+    .email-box {
+        margin-top: 24px;
+        display: block;
+        padding: 10px;
+        border-radius: 20px;
+    }
+
+    .email-value {
+        min-height: 54px;
+        padding: 0 12px;
+        display: flex;
+        align-items: center;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .copy-button {
+        width: 100%;
+        margin-top: 8px;
+        min-height: 52px;
+        border-radius: 16px;
+    }
+
+    .mailbox-meta {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .mailbox-meta > div {
+        min-height: 82px;
+        padding: 14px;
+        border-radius: 18px;
+    }
+
+    .mailbox-meta > div:last-child {
+        grid-column: 1 / -1;
+    }
+
+    .controls-row {
+        display: block;
+        margin-top: 20px;
+    }
+
+    .select-group {
+        width: 100%;
+    }
+
+    #domainSelect {
+        width: 100%;
+        min-height: 52px;
+        border-radius: 16px;
+    }
+
+    .refresh-btn {
+        width: 100%;
+        margin-top: 10px;
+        min-height: 50px;
+    }
+
+    .section-heading {
+        margin-top: 25px;
+    }
+
+    .inbox {
+        border-radius: 22px;
+    }
+
+    .page-card {
+        padding: 22px 18px;
+        border-radius: 24px;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .stat-card {
+        padding: 17px;
+        border-radius: 18px;
+    }
+
+    .stat-card strong {
+        font-size: 16px;
+        word-break: break-word;
+    }
+
+    .admin-list-row {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+}
+
+
+/* very small phones */
+
+@media (max-width: 390px) {
+
+    .mobile-brand strong {
+        display: none;
+    }
+
+    .mailbox-meta {
+        grid-template-columns: 1fr;
+    }
+
+    .mailbox-meta > div:last-child {
+        grid-column: auto;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+/* =========================================================
+   MOBILE MENU - FINAL
+   ========================================================= */
+
+@media (max-width: 760px) {
+
+    .mobile-menu {
+        background: transparent;
+    }
+
+    .mobile-menu-backdrop {
+        background: rgba(0, 0, 0, .38);
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+    }
+
+    .mobile-menu-card {
+        top: 76px;
+        left: 18px;
+        right: 18px;
+        padding: 12px;
+        background: rgba(28, 25, 35, .96);
+        border: 1px solid rgba(255,255,255,.09);
+        box-shadow: 0 25px 70px rgba(0,0,0,.5);
+    }
+
+    .mobile-nav-item {
+        display: flex !important;
+        align-items: center;
+        gap: 14px;
+        min-height: 58px;
+        padding: 0 16px;
+        color: rgba(255,255,255,.78) !important;
+        text-align: left;
+    }
+
+    .mobile-nav-item span {
+        display: inline-flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+
+    .mobile-nav-item span:first-child {
+        width: 24px;
+        justify-content: center;
+        color: rgba(255,255,255,.68);
+    }
+
+    .mobile-nav-item span:last-child {
+        color: rgba(255,255,255,.9) !important;
+        font-size: 16px;
+        font-weight: 600;
+        white-space: nowrap;
+    }
+
+    .mobile-nav-item.active {
+        background: linear-gradient(
+            90deg,
+            rgba(255, 50, 145, .14),
+            rgba(110, 70, 255, .10)
+        );
+
+        border-left: 3px solid #ff3f9a;
+    }
+
+    .mobile-nav-item:hover {
+        background: rgba(255,255,255,.07);
+    }
+
+    .nav-label {
+        padding: 15px 16px 7px;
+        color: rgba(255,255,255,.35);
+        font-size: 10px;
+        letter-spacing: .12em;
+    }
+
+}
+
+.settings-account {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 24px;
+}
+
+.setting-field {
+    padding: 18px;
+    border-radius: 20px;
+    background: rgba(255,255,255,.035);
+    border: 1px solid rgba(255,255,255,.07);
+}
+
+.setting-field label {
+    display: block;
+    margin-bottom: 8px;
+    color: rgba(255,255,255,.45);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+}
+
+.account-value {
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    padding: 0 14px;
+    border-radius: 14px;
+    background: rgba(0,0,0,.2);
+    color: white;
+}
+
+.setting-field .button {
+    width: 100%;
+}
+
+@media (max-width: 760px) {
+
+    .settings-account {
+        gap: 10px;
+    }
+
+    .setting-field {
+        padding: 15px;
+        border-radius: 17px;
+    }
+
+}
+
+.settings-account {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 24px;
+}
+
+.setting-field {
+    padding: 18px;
+    border-radius: 20px;
+    background: rgba(255,255,255,.035);
+    border: 1px solid rgba(255,255,255,.07);
+}
+
+.setting-field label {
+    display: block;
+    margin-bottom: 8px;
+    color: rgba(255,255,255,.45);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+}
+
+.account-value {
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    padding: 0 14px;
+    border-radius: 14px;
+    background: rgba(0,0,0,.2);
+    color: white;
+}
+
+.setting-field .button {
+    width: 100%;
+}
+
+@media (max-width: 760px) {
+
+    .settings-account {
+        gap: 10px;
+    }
+
+    .setting-field {
+        padding: 15px;
+        border-radius: 17px;
+    }
+
+}
+
+/* =========================================================
+   MOBILE MENU - FINAL
+   ========================================================= */
+
+@media (max-width: 760px) {
+
+    .mobile-menu {
+        background: transparent;
+    }
+
+    .mobile-menu-backdrop {
+        background: rgba(0, 0, 0, .38);
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+    }
+
+    .mobile-menu-card {
+        top: 76px;
+        left: 18px;
+        right: 18px;
+        padding: 12px;
+        background: rgba(28, 25, 35, .96);
+        border: 1px solid rgba(255,255,255,.09);
+        box-shadow: 0 25px 70px rgba(0,0,0,.5);
+    }
+
+    .mobile-nav-item {
+        display: flex !important;
+        align-items: center;
+        gap: 14px;
+        min-height: 58px;
+        padding: 0 16px;
+        color: rgba(255,255,255,.78) !important;
+        text-align: left;
+    }
+
+    .mobile-nav-item span {
+        display: inline-flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+
+    .mobile-nav-item span:first-child {
+        width: 24px;
+        justify-content: center;
+        color: rgba(255,255,255,.68);
+    }
+
+    .mobile-nav-item span:last-child {
+        color: rgba(255,255,255,.9) !important;
+        font-size: 16px;
+        font-weight: 600;
+        white-space: nowrap;
+    }
+
+    .mobile-nav-item.active {
+        background: linear-gradient(
+            90deg,
+            rgba(255, 50, 145, .14),
+            rgba(110, 70, 255, .10)
+        );
+
+        border-left: 3px solid #ff3f9a;
+    }
+
+    .mobile-nav-item:hover {
+        background: rgba(255,255,255,.07);
+    }
+
+    .nav-label {
+        padding: 15px 16px 7px;
+        color: rgba(255,255,255,.35);
+        font-size: 10px;
+        letter-spacing: .12em;
+    }
+
+}
+
+.settings-account {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 24px;
+}
+
+.setting-field {
+    padding: 18px;
+    border-radius: 20px;
+    background: rgba(255,255,255,.035);
+    border: 1px solid rgba(255,255,255,.07);
+}
+
+.setting-field label {
+    display: block;
+    margin-bottom: 8px;
+    color: rgba(255,255,255,.45);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+}
+
+.account-value {
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    padding: 0 14px;
+    border-radius: 14px;
+    background: rgba(0,0,0,.2);
+    color: white;
+}
+
+.setting-field .button {
+    width: 100%;
+}
+
+@media (max-width: 760px) {
+
+    .settings-account {
+        gap: 10px;
+    }
+
+    .setting-field {
+        padding: 15px;
+        border-radius: 17px;
+    }
+
+}
+
+/* =========================================================
+   FINAL VISIBILITY FIX
+   ========================================================= */
+
+.hidden {
+    display: none !important;
+}
+
+/* =========================================================
+   FINAL MOBILE UI
+   ========================================================= */
+
+@media (max-width: 760px) {
+
+    .main {
+        padding-bottom: 40px;
+    }
+
+    .topbar {
+        background: rgba(8,8,10,.94);
+    }
+
+    .mobile-brand {
+        color: #fff;
+    }
+
+    .mobile-menu-card {
+        color: #fff;
+    }
+
+    .mobile-menu-card .mobile-nav-item {
+        color: #fff !important;
+    }
+
+    .mobile-menu-card .mobile-nav-item span {
+        color: rgba(255,255,255,.9) !important;
+    }
+
+    .mailbox-hero {
+        margin-top: 10px;
+    }
+
+    .inbox {
+        min-height: 360px;
+    }
+
+    /*
+     * Account information must never appear
+     * outside Account Settings.
+     */
+    #accountInfo {
+        display: none;
+    }
+
+    #accountView #accountInfo {
+        display: block;
+    }
+
+    #accountView.hidden #accountInfo {
+        display: none !important;
+    }
+
+}
+
+/* Final view visibility */
+.view.hidden {
+    display: none !important;
+}
+
+.view:not(.hidden) {
+    display: block;
+}
+
+/* Never show account information on mailbox */
+#mailboxView #accountInfo {
+    display: none !important;
+}
+
+
+/* ===== FINAL VISIBILITY ===== */
+.hidden {
+    display: none !important;
+}
+
+.view.hidden {
+    display: none !important;
+}
+
+.view:not(.hidden) {
+    display: block;
+}
+
+/* Account information belongs ONLY to Account Settings */
+#mailboxView #accountInfo,
+#settingsView #accountInfo {
+    display: none !important;
+}
+
+/* ===== FINAL MOBILE MENU ===== */
+@media (max-width: 760px) {
+
+    .sidebar {
+        display: none !important;
+    }
+
+    .main {
+        width: 100%;
+        padding: 0 15px 40px;
+    }
+
+    .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        margin: 0 -15px 18px;
+        padding: 10px 15px;
+        min-height: 72px;
+        background: rgba(8,8,10,.96);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+    }
+
+    .mobile-menu-card {
+        background: rgba(27,24,34,.98);
+        border: 1px solid rgba(255,255,255,.10);
+        box-shadow: 0 25px 70px rgba(0,0,0,.65);
+    }
+
+    .mobile-nav-item {
+        display: flex !important;
+        align-items: center;
+        gap: 14px;
+        width: 100%;
+        min-height: 58px;
+        padding: 0 16px;
+        color: #fff !important;
+        background: transparent;
+    }
+
+    .mobile-nav-item span {
+        display: inline-flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        color: #fff !important;
+    }
+
+    .mobile-nav-item.active {
+        border-left: 3px solid #ff3d9a;
+        background: linear-gradient(
+            90deg,
+            rgba(255,61,154,.15),
+            rgba(120,70,255,.08)
+        );
+    }
+
+    .mailbox-hero {
+        margin-top: 10px;
+    }
+
+    .email-box {
+        overflow: hidden;
+    }
+
+    .email-value {
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .copy-button {
+        width: 100%;
+        margin-top: 8px;
+    }
+
+    .controls-row {
+        display: block;
+    }
+
+    .select-group,
+    #domainSelect,
+    .refresh-btn {
+        width: 100%;
+    }
+
+    .refresh-btn {
+        margin-top: 10px;
+    }
+
+    .inbox {
+        min-height: 360px;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 390px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* =========================================================
+   DASHBOARD FINAL UI
+   ========================================================= */
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+    margin-top: 18px;
+}
+
+.stat-card {
+    min-width: 0;
+    padding: 22px;
+    border-radius: 22px;
+}
+
+.stat-card span {
+    display: block;
+    color: rgba(255,255,255,.48);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .09em;
+    margin-bottom: 9px;
+}
+
+.stat-card strong {
+    display: block;
+    font-size: 28px;
+    color: #fff;
+}
+
+.admin-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.admin-list-row {
+    display: grid;
+    grid-template-columns: minmax(0,1fr) auto auto;
+    gap: 20px;
+    align-items: center;
+    padding: 17px;
+    border-radius: 17px;
+    background: rgba(255,255,255,.035);
+    border: 1px solid rgba(255,255,255,.065);
+}
+
+.admin-list-row strong,
+.admin-list-row small {
+    display: block;
+}
+
+.admin-list-row small {
+    margin-top: 5px;
+    color: rgba(255,255,255,.42);
+}
+
+.admin-list-row time {
+    color: rgba(255,255,255,.45);
+    font-size: 12px;
+}
+
+.dns-box {
+    grid-column: 1 / -1;
+    padding: 15px;
+    border-radius: 15px;
+    background: rgba(0,0,0,.22);
+}
+
+.dns-record {
+    display: grid;
+    grid-template-columns: 70px 1fr 2fr;
+    gap: 8px;
+    margin-top: 8px;
+    padding: 9px;
+    border-radius: 9px;
+    background: rgba(255,255,255,.035);
+    overflow: hidden;
+}
+
+.dns-record code {
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 900px) {
+
+    .stats-grid {
+        grid-template-columns: repeat(2, minmax(0,1fr));
+    }
+
+}
+
+@media (max-width: 760px) {
+
+    .stats-grid {
+        grid-template-columns: repeat(2, minmax(0,1fr));
+    }
+
+    .admin-list-row {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .dns-record {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+@media (max-width: 390px) {
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+/* =========================================================
+   ADMIN DASHBOARD
+   DARK GLASS / ORANGE / PINK
+========================================================= */
+
+.admin-dashboard {
+    width: 100%;
+    min-height: 100vh;
+    padding: 0;
+    color: #f5f5f7;
+}
+
+
+/* =========================================================
+   ADMIN TOPBAR
+========================================================= */
+
+.admin-topbar {
+    height: 72px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 4px 0 0;
+
+    margin-bottom: 28px;
+}
+
+.admin-topbar-left,
+.admin-topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.admin-search {
+    width: 330px;
+    height: 44px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 0 15px;
+
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.075),
+            rgba(255,255,255,.025)
+        );
+
+    border: 1px solid rgba(255,255,255,.075);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.05),
+        0 10px 30px rgba(0,0,0,.15);
+
+    backdrop-filter: blur(20px);
+}
+
+.admin-search span {
+    color: rgba(255,255,255,.42);
+    font-size: 22px;
+}
+
+.admin-search input {
+    width: 100%;
+
+    border: 0;
+    outline: 0;
+
+    background: transparent;
+
+    color: #fff;
+
+    font-size: 14px;
+}
+
+.admin-search input::placeholder {
+    color: rgba(255,255,255,.35);
+}
+
+
+/* =========================================================
+   ICON BUTTON
+========================================================= */
+
+.icon-btn {
+    width: 42px;
+    height: 42px;
+
+    border: 1px solid rgba(255,255,255,.08);
+
+    border-radius: 13px;
+
+    background: rgba(255,255,255,.045);
+
+    color: rgba(255,255,255,.75);
+
+    cursor: pointer;
+
+    transition:
+        transform .2s ease,
+        background .2s ease,
+        border-color .2s ease;
+}
+
+.icon-btn:hover {
+    transform: translateY(-1px);
+
+    background: rgba(255,255,255,.09);
+
+    border-color: rgba(255,255,255,.15);
+}
+
+
+/* =========================================================
+   ADMIN PROFILE
+========================================================= */
+
+.admin-profile {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+}
+
+.admin-avatar {
+    width: 40px;
+    height: 40px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 50%;
+
+    font-weight: 700;
+
+    color: #fff;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff6a00,
+            #ff2f92,
+            #8a5cff
+        );
+
+    box-shadow:
+        0 0 25px rgba(255,79,68,.25);
+}
+
+.admin-profile-info {
+    display: flex;
+    flex-direction: column;
+
+    line-height: 1.2;
+}
+
+.admin-profile-info strong {
+    font-size: 13px;
+}
+
+.admin-profile-info small {
+    margin-top: 4px;
+
+    font-size: 11px;
+
+    color: rgba(255,255,255,.4);
+}
+
+
+/* =========================================================
+   PAGE HEADER
+========================================================= */
+
+.admin-page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    margin-bottom: 22px;
+}
+
+.admin-eyebrow {
+    display: block;
+
+    margin-bottom: 7px;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: .16em;
+
+    color: #ff6a2b;
+}
+
+.admin-page-header h1 {
+    margin: 0;
+
+    font-size: clamp(27px, 3vw, 38px);
+
+    letter-spacing: -.04em;
+}
+
+.admin-page-header p {
+    margin: 7px 0 0;
+
+    color: rgba(255,255,255,.43);
+
+    font-size: 13px;
+}
+
+.admin-refresh-btn {
+    height: 40px;
+
+    padding: 0 15px;
+
+    border: 1px solid rgba(255,255,255,.09);
+
+    border-radius: 12px;
+
+    background: rgba(255,255,255,.05);
+
+    color: rgba(255,255,255,.8);
+
+    cursor: pointer;
+
+    transition: .2s ease;
+}
+
+.admin-refresh-btn:hover {
+    background: rgba(255,255,255,.1);
+}
+
+
+/* =========================================================
+   KPI CARDS
+========================================================= */
+
+.admin-kpi-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 14px;
+
+    margin-bottom: 14px;
+}
+
+.admin-kpi-card {
+    position: relative;
+
+    min-height: 145px;
+
+    padding: 20px;
+
+    overflow: hidden;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.085),
+            rgba(255,255,255,.025)
+        );
+
+    border: 1px solid rgba(255,255,255,.07);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.055),
+        0 15px 40px rgba(0,0,0,.2);
+
+    backdrop-filter: blur(24px);
+
+    transition:
+        transform .2s ease,
+        border-color .2s ease;
+}
+
+.admin-kpi-card::after {
+    content: "";
+
+    position: absolute;
+
+    width: 130px;
+    height: 130px;
+
+    right: -60px;
+    bottom: -80px;
+
+    border-radius: 50%;
+
+    background: rgba(255,89,30,.13);
+
+    filter: blur(20px);
+
+    pointer-events: none;
+}
+
+.admin-kpi-card:hover {
+    transform: translateY(-2px);
+
+    border-color: rgba(255,255,255,.13);
+}
+
+.kpi-icon {
+    width: 38px;
+    height: 38px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 12px;
+
+    margin-bottom: 16px;
+
+    font-size: 17px;
+
+    background: rgba(255,255,255,.06);
+}
+
+.kpi-icon.orange {
+    color: #ff7138;
+    box-shadow: inset 0 0 25px rgba(255,92,25,.12);
+}
+
+.kpi-icon.purple {
+    color: #9e7cff;
+    box-shadow: inset 0 0 25px rgba(130,80,255,.12);
+}
+
+.kpi-icon.pink {
+    color: #ff6cae;
+    box-shadow: inset 0 0 25px rgba(255,60,150,.12);
+}
+
+.kpi-icon.green {
+    color: #52d99b;
+    box-shadow: inset 0 0 25px rgba(30,210,130,.12);
+}
+
+.kpi-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.kpi-content > span {
+    font-size: 12px;
+
+    color: rgba(255,255,255,.45);
+}
+
+.kpi-content strong {
+    margin-top: 5px;
+
+    font-size: 29px;
+
+    letter-spacing: -.035em;
+}
+
+.kpi-content small {
+    margin-top: 7px;
+
+    font-size: 10px;
+}
+
+.kpi-positive {
+    color: #4bdc9b;
+}
+
+
+/* =========================================================
+   PANELS
+========================================================= */
+
+.admin-main-grid {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.7fr)
+        minmax(300px, .8fr);
+
+    gap: 14px;
+
+    margin-bottom: 14px;
+}
+
+.admin-bottom-grid {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.7fr)
+        minmax(300px, .8fr);
+
+    gap: 14px;
+}
+
+.admin-panel {
+    border-radius: 21px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.065),
+            rgba(255,255,255,.022)
+        );
+
+    border: 1px solid rgba(255,255,255,.065);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.045),
+        0 18px 45px rgba(0,0,0,.18);
+
+    backdrop-filter: blur(24px);
+
+    overflow: hidden;
+}
+
+.panel-header {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: flex-start;
+
+    padding: 20px 21px 0;
+}
+
+.panel-header h2 {
+    margin: 0;
+
+    font-size: 15px;
+
+    letter-spacing: -.01em;
+}
+
+.panel-header p {
+    margin: 5px 0 0;
+
+    font-size: 11px;
+
+    color: rgba(255,255,255,.36);
+}
+
+
+/* =========================================================
+   ANALYTICS
+========================================================= */
+
+.analytics-legend {
+    display: flex;
+
+    gap: 14px;
+
+    font-size: 10px;
+
+    color: rgba(255,255,255,.45);
+}
+
+.analytics-legend span {
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+}
+
+.legend-dot {
+    width: 7px;
+    height: 7px;
+
+    display: inline-block;
+
+    border-radius: 50%;
+}
+
+.legend-dot.orange {
+    background: #ff632d;
+
+    box-shadow:
+        0 0 10px rgba(255,99,45,.7);
+}
+
+.legend-dot.pink {
+    background: #ec5da2;
+
+    box-shadow:
+        0 0 10px rgba(236,93,162,.7);
+}
+
+.chart-wrapper {
+    position: relative;
+
+    height: 295px;
+
+    padding: 20px;
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+.status-online {
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    padding: 6px 9px;
+
+    border-radius: 20px;
+
+    font-size: 10px;
+
+    color: #54dba0;
+
+    background: rgba(60,220,150,.08);
+
+    border: 1px solid rgba(60,220,150,.12);
+}
+
+.status-online i {
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: #54dba0;
+
+    box-shadow:
+        0 0 10px rgba(84,219,160,.8);
+}
+
+.admin-alert-list {
+    padding: 14px 20px 20px;
+}
+
+.admin-alert {
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+
+    padding: 13px 0;
+
+    border-bottom:
+        1px solid rgba(255,255,255,.055);
+}
+
+.admin-alert:last-child {
+    border-bottom: 0;
+}
+
+.alert-symbol {
+    width: 31px;
+    height: 31px;
+
+    flex-shrink: 0;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 10px;
+
+    background: rgba(255,255,255,.045);
+
+    font-size: 12px;
+}
+
+.alert-symbol.green {
+    color: #54dba0;
+}
+
+.alert-symbol.orange {
+    color: #ff733d;
+}
+
+.alert-symbol.purple {
+    color: #9d7aff;
+}
+
+.alert-symbol.pink {
+    color: #ff6cae;
+}
+
+.admin-alert > div:nth-child(2) {
+    min-width: 0;
+    flex: 1;
+}
+
+.admin-alert strong {
+    display: block;
+
+    font-size: 11px;
+}
+
+.admin-alert p {
+    margin: 4px 0 0;
+
+    color: rgba(255,255,255,.35);
+
+    font-size: 9px;
+}
+
+.alert-status {
+    padding: 4px 7px;
+
+    border-radius: 8px;
+
+    font-size: 8px;
+    font-weight: 700;
+
+    letter-spacing: .04em;
+}
+
+.alert-status.success {
+    color: #51d99c;
+
+    background: rgba(60,220,150,.08);
+}
+
+.alert-status.warning {
+    color: #ffb24b;
+
+    background: rgba(255,178,75,.08);
+}
+
+
+/* =========================================================
+   ACTIVITY TABLE
+========================================================= */
+
+.activity-table-wrap {
+    overflow-x: auto;
+
+    padding: 13px 20px 18px;
+}
+
+.admin-table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    min-width: 500px;
+}
+
+.admin-table th {
+    padding: 10px 7px;
+
+    text-align: left;
+
+    font-size: 9px;
+    font-weight: 600;
+
+    color: rgba(255,255,255,.3);
+
+    border-bottom:
+        1px solid rgba(255,255,255,.06);
+}
+
+.admin-table td {
+    padding: 12px 7px;
+
+    font-size: 10px;
+
+    color: rgba(255,255,255,.67);
+
+    border-bottom:
+        1px solid rgba(255,255,255,.04);
+}
+
+.admin-table tr:last-child td {
+    border-bottom: 0;
+}
+
+.table-loading {
+    text-align: center !important;
+
+    padding: 30px !important;
+
+    color: rgba(255,255,255,.3) !important;
+}
+
+.activity-event {
+    color: #fff;
+
+    font-weight: 600;
+}
+
+.activity-country {
+    color: rgba(255,255,255,.45);
+}
+
+.activity-status {
+    display: inline-block;
+
+    padding: 4px 7px;
+
+    border-radius: 7px;
+
+    font-size: 8px;
+
+    color: #55dca0;
+
+    background: rgba(70,220,155,.08);
+}
+
+.panel-link {
+    border: 0;
+
+    background: transparent;
+
+    color: #ff7542;
+
+    font-size: 10px;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   QUICK ACTIONS
+========================================================= */
+
+.quick-actions {
+    display: flex;
+
+    flex-direction: column;
+
+    padding: 14px 20px 20px;
+}
+
+.quick-action {
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+
+    padding: 12px 0;
+
+    border: 0;
+
+    border-bottom:
+        1px solid rgba(255,255,255,.05);
+
+    background: transparent;
+
+    color: #fff;
+
+    text-align: left;
+
+    cursor: pointer;
+}
+
+.quick-action:last-child {
+    border-bottom: 0;
+}
+
+.quick-action-icon {
+    width: 34px;
+    height: 34px;
+
+    display: grid;
+    place-items: center;
+
+    flex-shrink: 0;
+
+    border-radius: 10px;
+
+    background: rgba(255,255,255,.05);
+}
+
+.quick-action-icon.orange {
+    color: #ff733c;
+}
+
+.quick-action-icon.purple {
+    color: #a17fff;
+}
+
+.quick-action-icon.pink {
+    color: #ff6dad;
+}
+
+.quick-action > span:nth-child(2) {
+    flex: 1;
+
+    min-width: 0;
+}
+
+.quick-action strong {
+    display: block;
+
+    font-size: 11px;
+}
+
+.quick-action small {
+    display: block;
+
+    margin-top: 4px;
+
+    color: rgba(255,255,255,.35);
+
+    font-size: 9px;
+}
+
+.quick-action b {
+    color: rgba(255,255,255,.3);
+
+    transition: .2s;
+}
+
+.quick-action:hover b {
+    color: #ff713b;
+
+    transform: translateX(3px);
+}
+
+
+/* =========================================================
+   SIDEBAR COLLAPSE
+========================================================= */
+
+.sidebar {
+    transition:
+        width .28s ease,
+        transform .28s ease;
+}
+
+.sidebar.sidebar-collapsed {
+    width: 78px;
+}
+
+.sidebar.sidebar-collapsed .brand-text,
+.sidebar.sidebar-collapsed .nav-label,
+.sidebar.sidebar-collapsed .nav-section-title,
+.sidebar.sidebar-collapsed .service-status-text {
+    display: none;
+}
+
+.sidebar.sidebar-collapsed .nav-item {
+    justify-content: center;
+
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.sidebar.sidebar-collapsed .brand {
+    justify-content: center;
+}
+
+.sidebar-collapse-btn {
+    position: absolute;
+
+    top: 24px;
+    right: -11px;
+
+    width: 23px;
+    height: 23px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(255,255,255,.1);
+
+    background: #1b1b1e;
+
+    color: rgba(255,255,255,.7);
+
+    cursor: pointer;
+
+    z-index: 20;
+
+    box-shadow:
+        0 4px 15px rgba(0,0,0,.4);
+}
+
+
+/* =========================================================
+   MOBILE SIDEBAR
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .admin-kpi-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .admin-main-grid,
+    .admin-bottom-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-search {
+        width: 230px;
+    }
+}
+
+
+@media (max-width: 680px) {
+
+    .admin-dashboard {
+        padding: 0;
+    }
+
+    .admin-topbar {
+        height: 60px;
+
+        margin-bottom: 18px;
+    }
+
+    .admin-search {
+        width: min(180px, 42vw);
+        height: 39px;
+    }
+
+    .admin-profile-info {
+        display: none;
+    }
+
+    .admin-profile {
+        gap: 0;
+    }
+
+    .admin-page-header {
+        align-items: flex-start;
+
+        gap: 12px;
+    }
+
+    .admin-page-header h1 {
+        font-size: 27px;
+    }
+
+    .admin-page-header p {
+        max-width: 230px;
+    }
+
+    .admin-refresh-btn {
+        padding: 0 11px;
+    }
+
+    .admin-refresh-btn span {
+        display: none;
+    }
+
+    .admin-kpi-grid {
+        grid-template-columns: 1fr 1fr;
+
+        gap: 10px;
+    }
+
+    .admin-kpi-card {
+        min-height: 125px;
+
+        padding: 15px;
+
+        border-radius: 17px;
+    }
+
+    .kpi-icon {
+        width: 31px;
+        height: 31px;
+
+        margin-bottom: 11px;
+    }
+
+    .kpi-content strong {
+        font-size: 22px;
+    }
+
+    .kpi-content > span {
+        font-size: 10px;
+    }
+
+    .admin-panel {
+        border-radius: 17px;
+    }
+
+    .panel-header {
+        padding: 16px 15px 0;
+    }
+
+    .panel-header h2 {
+        font-size: 14px;
+    }
+
+    .analytics-legend {
+        display: none;
+    }
+
+    .chart-wrapper {
+        height: 230px;
+
+        padding: 10px;
+    }
+
+    .admin-alert-list {
+        padding: 8px 15px 14px;
+    }
+
+    .activity-table-wrap {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .quick-actions {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .sidebar.sidebar-collapsed {
+        width: 0;
+
+        padding: 0;
+
+        overflow: hidden;
+    }
+
+    .sidebar.sidebar-collapsed .sidebar-collapse-btn {
+        display: none;
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media (max-width: 400px) {
+
+    .admin-topbar-left {
+        gap: 7px;
+    }
+
+    .admin-topbar-right {
+        gap: 6px;
+    }
+
+    .admin-search {
+        width: 145px;
+    }
+
+    .admin-avatar {
+        width: 35px;
+        height: 35px;
+    }
+
+    .admin-kpi-card {
+        padding: 13px;
+    }
+
+    .kpi-content strong {
+        font-size: 20px;
+    }
+}
+/* =========================================================
+   ADMIN VIEW POSITION FIX
+========================================================= */
+
+#adminView,
+#adminUsersView,
+#adminDomainsView,
+#adminMailboxesView {
+    position: relative !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    min-height: 0 !important;
+    height: auto !important;
+
+    top: auto !important;
+    transform: none !important;
+}
+
+
+/* Keep hidden views REALLY hidden */
+.view.hidden,
+#adminView.hidden,
+#adminUsersView.hidden,
+#adminDomainsView.hidden,
+#adminMailboxesView.hidden {
+    display: none !important;
+}
+
+/* =========================================================
+   ADMIN MOBILE
+========================================================= */
+
+@media (max-width: 760px) {
+
+    .admin-dashboard {
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 8px 12px 35px !important;
+        min-height: 0 !important;
+    }
+
+    .admin-topbar {
+        width: 100%;
+        height: 52px !important;
+        margin: 0 0 16px !important;
+        padding: 0 !important;
+    }
+
+    .admin-page-header {
+        margin: 0 0 18px !important;
+    }
+
+    .admin-page-header h1 {
+        font-size: 27px;
+    }
+
+    .admin-kpi-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .admin-kpi-card {
+        min-height: 125px;
+        padding: 15px;
+        border-radius: 17px;
+    }
+
+    .admin-main-grid,
+    .admin-bottom-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .admin-panel {
+        border-radius: 18px;
+    }
+
+    .chart-wrapper {
+        height: 230px;
+        padding: 10px;
+    }
+}
+/* =========================================================
+   FINAL MOBILE ADMIN FIX
+   ONE SIDEBAR / ONE MOBILE HEADER
+========================================================= */
+
+@media (max-width: 760px) {
+
+    /* Completely remove the desktop sidebar on mobile */
+    #mainSidebar,
+    .sidebar {
+        display: none !important;
+        width: 0 !important;
+        min-width: 0 !important;
+        max-width: 0 !important;
+        transform: none !important;
+        pointer-events: none !important;
+    }
+
+    /* Remove the desktop sidebar offset */
+    .main {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-left: 0 !important;
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+    }
+
+    /* Admin dashboard must use full screen */
+    #adminView,
+    #adminUsersView,
+    #adminDomainsView,
+    #adminMailboxesView {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-left: 0 !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        transform: none !important;
+    }
+
+    .admin-dashboard {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 10px 10px 30px !important;
+    }
+
+    /*
+       Keep ONLY the mobile/global topbar.
+       Remove the second admin topbar.
+    */
+    #adminView .admin-topbar {
+        display: none !important;
+    }
+
+    /*
+       Keep the normal mobile header visible.
+    */
+    .topbar {
+        display: flex !important;
+        width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        position: sticky !important;
+        top: 0 !important;
+        z-index: 1000 !important;
+        pointer-events: auto !important;
+    }
+
+    .mobile-menu-btn,
+    .mobile-brand,
+    #loginBtn,
+    #logoutBtn {
+        pointer-events: auto !important;
+        position: relative !important;
+        z-index: 1002 !important;
+    }
+
+    /*
+       Remove the second admin hamburger.
+    */
+    #adminSidebarToggle {
+        display: none !important;
+    }
+
+    /*
+       Remove desktop collapse button.
+    */
+    #sidebarCollapseBtn {
+        display: none !important;
+    }
+
+    /*
+       Make all dashboard controls clickable.
+    */
+    #adminView button,
+    #adminView input,
+    #adminView select,
+    #adminView a {
+        pointer-events: auto !important;
+        position: relative;
+        z-index: 5;
+    }
+
+    /*
+       Prevent invisible layers from blocking taps.
+    */
+    .hidden {
+        display: none !important;
+        pointer-events: none !important;
+    }
+
+    /*
+       Mobile menu itself must receive taps when open.
+    */
+    #mobileMenu {
+        z-index: 5000 !important;
+        pointer-events: auto !important;
+    }
+
+    #mobileMenu.hidden {
+        display: none !important;
+        pointer-events: none !important;
+    }
+
+    #mobileMenu .mobile-menu-card,
+    #mobileMenu .mobile-menu-backdrop {
+        pointer-events: auto !important;
+    }
+
+    /*
+       Dashboard cards and controls.
+    */
+    .admin-kpi-grid,
+    .admin-main-grid,
+    .admin-bottom-grid {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    .admin-kpi-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+
+    .admin-main-grid,
+    .admin-bottom-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+
+/* Smaller phones */
+@media (max-width: 500px) {
+
+    .admin-dashboard {
+        padding-left: 8px !important;
+        padding-right: 8px !important;
+    }
+
+    .admin-kpi-grid {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 12px !important;
+    }
+
+    .admin-kpi-card {
+        min-width: 0 !important;
+    }
+
+    .admin-page-header {
+        margin-top: 5px !important;
+    }
+}
+
+/* =========================================================
+   FINAL MOBILE HEADER
+========================================================= */
+
+@media (max-width: 760px) {
+
+    .topbar {
+        position: sticky !important;
+        top: 0 !important;
+
+        width: 100% !important;
+        height: 72px !important;
+        min-height: 72px !important;
+
+        margin: 0 0 18px 0 !important;
+        padding: 10px 12px !important;
+
+        display: grid !important;
+
+        grid-template-columns:
+            48px
+            minmax(0, 1fr)
+            auto !important;
+
+        align-items: center !important;
+        gap: 10px !important;
+
+        z-index: 10000 !important;
+    }
+
+    .mobile-menu-btn {
+        display: flex !important;
+
+        width: 44px !important;
+        height: 44px !important;
+
+        margin: 0 !important;
+
+        align-items: center !important;
+        justify-content: center !important;
+
+        position: relative !important;
+        z-index: 10001 !important;
+
+        pointer-events: auto !important;
+        touch-action: manipulation !important;
+    }
+
+    .mobile-brand {
+        display: flex !important;
+
+        align-items: center !important;
+        justify-content: flex-start !important;
+
+        gap: 9px !important;
+
+        min-width: 0 !important;
+    }
+
+    .mobile-brand-icon {
+        flex-shrink: 0 !important;
+    }
+
+    .mobile-brand strong {
+        display: block !important;
+        white-space: nowrap !important;
+    }
+
+    .top-actions {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: flex-end !important;
+
+        margin: 0 !important;
+    }
+
+    /* New email belongs in the main mailbox controls,
+       not the top mobile header */
+    .top-actions #newMailboxBtn {
+        display: none !important;
+    }
+
+    #loginBtn,
+    #logoutBtn {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+
+        min-height: 44px !important;
+        white-space: nowrap !important;
+    }
+
+    #mainSidebar {
+        display: none !important;
+    }
+
+    .main {
+        width: 100% !important;
+        margin-left: 0 !important;
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+    }
+}
+/* =========================================================
+   MOBILE NEW EMAIL BUTTON
+========================================================= */
+
+@media (max-width: 760px) {
+
+    .mailbox-controls {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 12px !important;
+    }
+
+    .mailbox-controls #newMailboxBtn,
+    #mailboxView #newMailboxBtn {
+        display: flex !important;
+
+        width: 100% !important;
+        min-height: 54px !important;
+
+        align-items: center !important;
+        justify-content: center !important;
+
+        pointer-events: auto !important;
+        touch-action: manipulation !important;
+    }
+}
+/* AUTH BUTTON VISIBILITY FIX */
+#loginBtn.hidden,
+#logoutBtn.hidden {
+    display: none !important;
+}
+
+#loginBtn:not(.hidden),
+#logoutBtn:not(.hidden) {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+.my-email-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+
+    padding: 16px 0;
+
+    border-bottom: 1px solid rgba(255,255,255,.07);
+}
+
+.my-email-item:last-child {
+    border-bottom: 0;
+}
+
+.my-email-info {
+    min-width: 0;
+}
+
+.my-email-info strong {
+    display: block;
+    font-size: 15px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.my-email-info span {
+    display: block;
+    margin-top: 5px;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.open-mailbox-btn {
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+@media (max-width: 760px) {
+    .my-email-item {
+        align-items: stretch;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .open-mailbox-btn {
+        width: 100%;
+        min-height: 48px;
+    }
+}
+
+/* =========================================================
+   FINAL FRONTEND FIXES
+   ========================================================= */
+
+.hidden {
+    display: none !important;
+}
+
+#loginBtn.hidden,
+#logoutBtn.hidden,
+#newMailboxBtn.hidden {
+    display: none !important;
+}
+
+.my-email-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(255,255,255,.07);
+}
+
+.my-email-item:last-child {
+    border-bottom: 0;
+}
+
+.my-email-info {
+    min-width: 0;
+    flex: 1;
+}
+
+.my-email-info strong {
+    display: block;
+    font-size: 15px;
+    line-height: 1.4;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.my-email-info span {
+    display: block;
+    margin-top: 5px;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.open-mailbox-btn {
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+.compact-empty {
+    min-height: 240px;
+}
+
+.compact-empty .button {
+    margin: 8px auto 0;
+    width: auto;
+}
+
+.mobile-mailbox-actions {
+    display: flex;
+    gap: 10px;
+    align-items: end;
+}
+
+.mobile-mailbox-actions #refreshBtn {
+    flex: 1;
+}
+
+#mobileNewMailboxBtn {
+    display: none;
+}
+
+/* Keep the guest/user header clean on desktop too. */
+#loginBtn.hidden,
+#logoutBtn.hidden {
+    visibility: hidden;
+}
+
+/* Mobile */
+@media (max-width: 760px) {
+    body {
+        overflow-x: hidden;
+    }
+
+    .app-shell {
+        display: block;
+        width: 100%;
+    }
+
+    #mainSidebar,
+    .sidebar {
+        display: none !important;
+    }
+
+    .main {
+        width: 100% !important;
+        max-width: none !important;
+        margin: 0 !important;
+        padding: 0 12px 30px !important;
+    }
+
+    .topbar {
+        position: sticky !important;
+        top: 0 !important;
+        width: calc(100% + 24px) !important;
+        height: 72px !important;
+        min-height: 72px !important;
+        margin-left: -12px !important;
+        margin-right: -12px !important;
+        margin-bottom: 20px !important;
+        padding: 10px 14px !important;
+        display: grid !important;
+        grid-template-columns: 48px minmax(0, 1fr) auto !important;
+        align-items: center !important;
+        gap: 10px !important;
+        background: rgba(8,8,11,.94) !important;
+        border-bottom: 1px solid rgba(255,255,255,.08);
+        backdrop-filter: blur(20px);
+        z-index: 1000 !important;
+    }
+
+    .topbar-title {
+        display: none !important;
+    }
+
+    .mobile-menu-btn {
+        display: grid !important;
+        place-items: center !important;
+        width: 44px !important;
+        height: 44px !important;
+        padding: 0 !important;
+        border: 0 !important;
+        border-radius: 14px !important;
+        background: rgba(255,255,255,.06) !important;
+        color: white !important;
+        font-size: 30px !important;
+        line-height: 1 !important;
+        z-index: 1001 !important;
+    }
+
+    .mobile-brand {
+        display: flex !important;
+        align-items: center !important;
+        gap: 9px !important;
+        min-width: 0 !important;
+        overflow: hidden;
+    }
+
+    .mobile-brand-icon {
+        width: 44px !important;
+        height: 44px !important;
+        flex: 0 0 44px;
+        display: grid !important;
+        place-items: center !important;
+        border-radius: 14px !important;
+        background: linear-gradient(135deg, var(--purple), var(--pink)) !important;
+    }
+
+    .mobile-brand strong {
+        font-size: 20px !important;
+        white-space: nowrap !important;
+    }
+
+    .top-actions {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: flex-end !important;
+        gap: 0 !important;
+        min-width: 0 !important;
+    }
+
+    .top-actions #newMailboxBtn {
+        display: none !important;
+    }
+
+    #loginBtn:not(.hidden),
+    #logoutBtn:not(.hidden) {
+        display: inline-flex !important;
+        min-height: 44px !important;
+        padding: 10px 18px !important;
+        border-radius: 14px !important;
+        white-space: nowrap !important;
+        font-size: 14px !important;
+    }
+
+    #loginBtn.hidden,
+    #logoutBtn.hidden {
+        display: none !important;
+        visibility: hidden !important;
+    }
+
+    .mailbox-hero {
+        width: 100%;
+        padding: 28px 22px !important;
+        border-radius: 28px !important;
+    }
+
+    .hero-copy h2 {
+        font-size: clamp(34px, 9vw, 46px) !important;
+        line-height: 1.03 !important;
+        margin-bottom: 20px !important;
+    }
+
+    .hero-copy p {
+        font-size: 18px !important;
+        line-height: 1.75 !important;
+        margin-bottom: 26px !important;
+    }
+
+    .email-box {
+        display: block !important;
+        width: 100% !important;
+        max-width: none !important;
+        padding: 10px !important;
+    }
+
+    .email-value {
+        padding: 14px 14px 18px !important;
+    }
+
+    .email-value span {
+        font-size: 15px !important;
+    }
+
+    .copy-button {
+        width: 100% !important;
+        min-height: 56px !important;
+        font-size: 17px !important;
+    }
+
+    .mailbox-meta {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 10px !important;
+    }
+
+    .mailbox-meta > div {
+        min-width: 0 !important;
+        padding: 16px 14px !important;
+        min-height: 94px;
+    }
+
+    .mailbox-meta > div:last-child {
+        grid-column: 1 / -1;
+    }
+
+    .controls-row {
+        display: block !important;
+        margin: 20px 0 28px !important;
+    }
+
+    .select-group {
+        width: 100% !important;
+        margin-bottom: 12px !important;
+    }
+
+    .mobile-mailbox-actions {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 10px !important;
+        width: 100% !important;
+    }
+
+    #mobileNewMailboxBtn {
+        display: inline-flex !important;
+        width: 100% !important;
+        min-height: 54px !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    .mobile-mailbox-actions #refreshBtn {
+        width: 100% !important;
+        min-height: 54px !important;
+        align-self: stretch !important;
+    }
+
+    .section-heading {
+        margin-top: 8px;
+    }
+
+    .inbox {
+        min-height: 280px;
+        border-radius: 24px;
+    }
+
+    .page-card {
+        width: 100% !important;
+        max-width: none !important;
+        padding: 24px 18px !important;
+        border-radius: 24px !important;
+    }
+
+    .my-email-item {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+        padding: 18px 0;
+    }
+
+    .my-email-info strong {
+        white-space: normal;
+        overflow-wrap: anywhere;
+    }
+
+    .open-mailbox-btn {
+        width: 100% !important;
+        min-height: 48px !important;
+    }
+
+    .auth-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    #mobileMenu {
+        position: fixed !important;
+        inset: 0 !important;
+        z-index: 5000 !important;
+    }
+
+    #mobileMenu.hidden {
+        display: none !important;
+    }
+
+    #mobileMenu .mobile-menu-card {
+        position: absolute;
+        left: 14px;
+        right: 14px;
+        top: 84px;
+        max-height: calc(100vh - 100px);
+        overflow-y: auto;
+        padding: 14px;
+        border-radius: 22px;
+        z-index: 2;
+    }
+
+    #mobileMenu .mobile-menu-backdrop {
+        position: absolute;
+        inset: 0;
+        background: rgba(0,0,0,.72);
+    }
+
+    #adminView,
+    #adminUsersView,
+    #adminDomainsView,
+    #adminMailboxesView {
+        width: 100% !important;
+        max-width: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        transform: none !important;
+    }
+
+    #adminView .admin-topbar {
+        display: none !important;
+    }
+
+    .admin-dashboard {
+        width: 100% !important;
+        padding: 8px 0 30px !important;
+    }
+
+    .admin-kpi-grid {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 10px !important;
+    }
+
+    .admin-main-grid,
+    .admin-bottom-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+@media (max-width: 400px) {
+    .topbar {
+        grid-template-columns: 44px minmax(0, 1fr) auto !important;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+
+    .mobile-brand strong {
+        font-size: 18px !important;
+    }
+
+    #loginBtn:not(.hidden),
+    #logoutBtn:not(.hidden) {
+        padding-left: 14px !important;
+        padding-right: 14px !important;
+    }
+
+    .mailbox-meta {
+        grid-template-columns: 1fr !important;
+    }
+
+    .mailbox-meta > div:last-child {
+        grid-column: auto;
+    }
+
+    .mobile-mailbox-actions {
+        grid-template-columns: 1fr !important;
+    }
+}
+.email-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.email-modal.hidden {
+    display: none !important;
+}
+
+.email-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.78);
+    backdrop-filter: blur(10px);
+}
+
+.email-modal-card {
+    position: relative;
+    z-index: 2;
+    width: min(850px, 100%);
+    max-height: 85vh;
+    overflow-y: auto;
+    padding: 24px;
+    border-radius: 22px;
+}
+
+.email-modal-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.email-modal-header h2 {
+    margin: 10px 0 0;
+    word-break: break-word;
+}
+
+.email-modal-close {
+    width: 40px;
+    height: 40px;
+    border: 0;
+    border-radius: 12px;
+    background: rgba(255,255,255,.08);
+    color: #fff;
+    font-size: 26px;
+    cursor: pointer;
+}
+
+.email-modal-close:hover {
+    background: rgba(255,255,255,.15);
+}
+
+.email-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.email-meta > div {
+    padding: 14px;
+    border-radius: 14px;
+    background: rgba(255,255,255,.045);
+}
+
+.email-meta span {
+    display: block;
+    font-size: 11px;
+    opacity: .55;
+    margin-bottom: 5px;
+}
+
+.email-meta strong {
+    display: block;
+    word-break: break-word;
+}
+
+.email-message-body {
+    min-height: 180px;
+    padding: 20px;
+    border-radius: 16px;
+    background: rgba(0,0,0,.25);
+    white-space: pre-wrap;
+    word-break: break-word;
+    line-height: 1.65;
+}
+
+.inbox-message {
+    cursor: pointer !important;
+    transition: transform .18s ease, border-color .18s ease, background .18s ease;
+}
+
+.inbox-message:hover {
+    transform: translateY(-2px);
+    border-color: rgba(255,255,255,.18);
+    background: rgba(255,255,255,.06);
+}
+
+@media (max-width: 600px) {
+    .email-modal {
+        padding: 10px;
+    }
+
+    .email-modal-card {
+        max-height: 90vh;
+        padding: 18px;
+        border-radius: 18px;
+    }
+
+    .email-meta {
+        grid-template-columns: 1fr;
+    }
+}
+/* =========================================================
+   MOBILE RESPONSIVE OVERRIDE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    html,
+    body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    body {
+        min-width: 0 !important;
+    }
+
+    /* Main application shell */
+    .app-shell,
+    .app-layout,
+    .dashboard-layout,
+    .layout {
+        display: block !important;
+        width: 100% !important;
+        min-width: 0 !important;
+    }
+
+    /* Desktop sidebar */
+    .sidebar,
+    #sidebar,
+    aside.sidebar {
+        display: none !important;
+        width: 0 !important;
+        min-width: 0 !important;
+    }
+
+    /* Main content */
+    .main-content,
+    .content,
+    .dashboard-content,
+    main {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        margin: 0 !important;
+        padding-left: 14px !important;
+        padding-right: 14px !important;
+    }
+
+    /* Top navigation */
+    .topbar,
+    header.topbar {
+        width: 100% !important;
+        min-width: 0 !important;
+        padding-left: 14px !important;
+        padding-right: 14px !important;
+    }
+
+    /* Keep New Email + Logout usable */
+    #newMailboxBtn {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        white-space: nowrap !important;
+    }
+
+    #logoutBtn {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        white-space: nowrap !important;
+    }
+
+    /* Hide desktop sidebar controls */
+    .sidebar-toggle,
+    #sidebarToggle {
+        display: none !important;
+    }
+
+    /* Cards */
+    .card,
+    .mailbox-card,
+    .inbox-card {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Mailbox information */
+    .mailbox-header,
+    .mailbox-info,
+    .mailbox-details {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    /* Email address */
+    #emailAddress {
+        max-width: 100% !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        white-space: nowrap !important;
+    }
+
+    /* Domain + refresh row */
+    #domainSelect {
+        min-width: 0 !important;
+        width: 100% !important;
+    }
+
+    /* Inbox */
+    #inbox,
+    .inbox,
+    .email-list {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    /* Prevent wide rows from forcing desktop width */
+    .email-row,
+    .email-card,
+    .message-card {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+    }
+}
+
+
+/* Smaller phones */
+@media (max-width: 600px) {
+
+    .main-content,
+    .content,
+    .dashboard-content,
+    main {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+
+    .topbar,
+    header.topbar {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+
+    #newMailboxBtn {
+        padding: 8px 10px !important;
+        font-size: 12px !important;
+    }
+
+    #logoutBtn {
+        padding: 8px 10px !important;
+        font-size: 12px !important;
+    }
+
+    .mailbox-card,
+    .card {
+        border-radius: 16px !important;
+    }
+}
+
+
+/* Very small phones */
+@media (max-width: 420px) {
+
+    #newMailboxBtn span {
+        display: none !important;
+    }
+
+    #newMailboxBtn {
+        font-size: 0 !important;
+    }
+
+    #newMailboxBtn::after {
+        content: "+ New email";
+        font-size: 11px;
+    }
+
+    #logoutBtn {
+        font-size: 11px !important;
+        padding: 8px 9px !important;
+    }
+}
+
+
+/* =========================================================
+   MOBILE RESPONSIVE OVERRIDE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    html,
+    body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    body {
+        min-width: 0 !important;
+    }
+
+    /* Main application shell */
+    .app-shell,
+    .app-layout,
+    .dashboard-layout,
+    .layout {
+        display: block !important;
+        width: 100% !important;
+        min-width: 0 !important;
+    }
+
+    /* Desktop sidebar */
+    .sidebar,
+    #sidebar,
+    aside.sidebar {
+        display: none !important;
+        width: 0 !important;
+        min-width: 0 !important;
+    }
+
+    /* Main content */
+    .main-content,
+    .content,
+    .dashboard-content,
+    main {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        margin: 0 !important;
+        padding-left: 14px !important;
+        padding-right: 14px !important;
+    }
+
+    /* Top navigation */
+    .topbar,
+    header.topbar {
+        width: 100% !important;
+        min-width: 0 !important;
+        padding-left: 14px !important;
+        padding-right: 14px !important;
+    }
+
+    /* Keep New Email + Logout usable */
+    #newMailboxBtn {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        white-space: nowrap !important;
+    }
+
+    #logoutBtn {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        white-space: nowrap !important;
+    }
+
+    /* Hide desktop sidebar controls */
+    .sidebar-toggle,
+    #sidebarToggle {
+        display: none !important;
+    }
+
+    /* Cards */
+    .card,
+    .mailbox-card,
+    .inbox-card {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Mailbox information */
+    .mailbox-header,
+    .mailbox-info,
+    .mailbox-details {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    /* Email address */
+    #emailAddress {
+        max-width: 100% !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        white-space: nowrap !important;
+    }
+
+    /* Domain + refresh row */
+    #domainSelect {
+        min-width: 0 !important;
+        width: 100% !important;
+    }
+
+    /* Inbox */
+    #inbox,
+    .inbox,
+    .email-list {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    /* Prevent wide rows from forcing desktop width */
+    .email-row,
+    .email-card,
+    .message-card {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+    }
+}
+
+
+/* Smaller phones */
+@media (max-width: 600px) {
+
+    .main-content,
+    .content,
+    .dashboard-content,
+    main {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+
+    .topbar,
+    header.topbar {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+
+    #newMailboxBtn {
+        padding: 8px 10px !important;
+        font-size: 12px !important;
+    }
+
+    #logoutBtn {
+        padding: 8px 10px !important;
+        font-size: 12px !important;
+    }
+
+    .mailbox-card,
+    .card {
+        border-radius: 16px !important;
+    }
+}
+
+
+/* Very small phones */
+@media (max-width: 420px) {
+
+    #newMailboxBtn span {
+        display: none !important;
+    }
+
+    #newMailboxBtn {
+        font-size: 0 !important;
+    }
+
+    #newMailboxBtn::after {
+        content: "+ New email";
+        font-size: 11px;
+    }
+
+    #logoutBtn {
+        font-size: 11px !important;
+        padding: 8px 9px !important;
+    }
+}
+
+
+/* =========================================================
+   MOBILE NEW EMAIL BUTTON
+   ========================================================= */
+
+#mobileNewMailboxBtn {
+    display: none;
+}
+
+@media (max-width: 900px) {
+    #mobileNewMailboxBtn {
+        display: inline-flex !important;
+        position: fixed !important;
+        right: 16px !important;
+        bottom: 20px !important;
+        z-index: 9999 !important;
+
+        align-items: center !important;
+        justify-content: center !important;
+
+        padding: 12px 18px !important;
+        border: 1px solid rgba(255,255,255,.12) !important;
+        border-radius: 14px !important;
+
+        background: linear-gradient(
+            135deg,
+            rgba(255,95,162,.95),
+            rgba(139,92,246,.95)
+        ) !important;
+
+        color: #fff !important;
+        font-size: 13px !important;
+        font-weight: 700 !important;
+
+        box-shadow:
+            0 10px 30px rgba(0,0,0,.45),
+            0 0 25px rgba(236,72,153,.25) !important;
+
+        cursor: pointer !important;
+    }
+
+    #mobileNewMailboxBtn:active {
+        transform: scale(.96);
+    }
+}
+
+/* =========================================================
+   NEW EMAIL LOCATION
+   Move New Email out of the topbar.
+   ========================================================= */
+
+/* Remove topbar New Email button */
+#newMailboxBtn {
+    display: none !important;
+}
+
+/* Remove the temporary floating mobile button */
+#mobileNewMailboxBtn {
+    display: none !important;
+}
+
+/* Inline New Email button replacing domain selector */
+#inlineNewMailboxBtn {
+    width: 100%;
+    min-height: 52px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    border: 1px solid rgba(255,255,255,.10);
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(236,72,153,.18),
+            rgba(139,92,246,.18)
+        );
+
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+
+    transition:
+        transform .15s ease,
+        background .15s ease,
+        border-color .15s ease;
+}
+
+#inlineNewMailboxBtn:hover {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(236,72,153,.28),
+            rgba(139,92,246,.28)
+        );
+
+    border-color: rgba(255,255,255,.20);
+}
+
+#inlineNewMailboxBtn:active {
+    transform: scale(.98);
+}
+
+#inlineNewMailboxBtn:disabled {
+    opacity: .6;
+    cursor: wait;
+}
+
+/* =========================================================
+   NEW EMAIL LOCATION
+   Move New Email out of the topbar.
+   ========================================================= */
+
+/* Remove topbar New Email button */
+#newMailboxBtn {
+    display: none !important;
+}
+
+/* Remove the temporary floating mobile button */
+#mobileNewMailboxBtn {
+    display: none !important;
+}
+
+/* Inline New Email button replacing domain selector */
+#inlineNewMailboxBtn {
+    width: 100%;
+    min-height: 52px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    border: 1px solid rgba(255,255,255,.10);
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(236,72,153,.18),
+            rgba(139,92,246,.18)
+        );
+
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+
+    transition:
+        transform .15s ease,
+        background .15s ease,
+        border-color .15s ease;
+}
+
+#inlineNewMailboxBtn:hover {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(236,72,153,.28),
+            rgba(139,92,246,.28)
+        );
+
+    border-color: rgba(255,255,255,.20);
+}
+
+#inlineNewMailboxBtn:active {
+    transform: scale(.98);
+}
+
+#inlineNewMailboxBtn:disabled {
+    opacity: .6;
+    cursor: wait;
+}
+
+/* =========================================================
+   DESIGNATED EMAIL DOMAIN
+   ========================================================= */
+
+#designatedEmailDomain {
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+#designatedEmailDomain option {
+    padding-left: 8px;
+}
+
+/* Remove explanatory text inside New Email modal */
+.new-email-description,
+.designated-email-description,
+.random-email-description {
+    display: none !important;
+}

@@ -1,0 +1,47 @@
+from alembic import op
+import sqlalchemy as sa
+
+
+def upgrade():
+    op.add_column(
+        "users",
+        sa.Column(
+            "country_code",
+            sa.String(length=10),
+            nullable=True,
+        ),
+    )
+
+    op.add_column(
+        "guest_sessions",
+        sa.Column(
+            "country_code",
+            sa.String(length=10),
+            nullable=True,
+        ),
+    )
+
+    op.add_column(
+        "mailboxes",
+        sa.Column(
+            "country_code",
+            sa.String(length=10),
+            nullable=True,
+        ),
+    )
+
+    op.add_column(
+        "activity",
+        sa.Column(
+            "country_code",
+            sa.String(length=10),
+            nullable=True,
+        ),
+    )
+
+
+def downgrade():
+    op.drop_column("activity", "country_code")
+    op.drop_column("mailboxes", "country_code")
+    op.drop_column("guest_sessions", "country_code")
+    op.drop_column("users", "country_code")
