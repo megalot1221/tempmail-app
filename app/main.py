@@ -27,6 +27,12 @@ from .models.models import (
 )
 
 
+def normalize_domain(domain: str) -> str:
+    domain = str(domain or "").strip().lower()
+    domain = domain.rstrip(".")
+    return domain
+
+
 class CreateUserMailboxRequest(BaseModel):
     domain: str
     username: str | None = None
